@@ -12,10 +12,7 @@
   <header class="topbar">
     <div class="brand">
       <span class="brand-mark">ITB</span>
-      <div>
-        <strong>SHIFTLOGIC</strong>
-        <small>RACING TRANSMISSION LAB</small>
-      </div>
+      <div><strong>SHIFTLOGIC</strong><small>RACING TRANSMISSION LAB</small></div>
     </div>
     <nav class="tabs">
       <button class="tab active" data-mode="manual">MANUAL</button>
@@ -35,22 +32,13 @@
 
       <section>
         <p class="eyebrow">DRIVER INPUT</p>
-        <label>
-          Kecepatan
-          <span><output id="speedOutput">120</output> km/j</span>
-        </label>
+        <label>Kecepatan <span><output id="speedOutput">120</output> km/j</span></label>
         <input id="speedInput" type="range" min="0" max="260" value="120" />
 
-        <label>
-          RPM
-          <span><output id="rpmOutput">4200</output></span>
-        </label>
+        <label>RPM <span><output id="rpmOutput">4200</output></span></label>
         <input id="rpmInput" type="range" min="800" max="11000" value="4200" />
 
-        <label>
-          Gas
-          <span><output id="throttleOutput">50</output>%</span>
-        </label>
+        <label>Gas <span><output id="throttleOutput">50</output>%</span></label>
         <input id="throttleInput" type="range" min="0" max="100" value="50" />
 
         <button id="analyzeBtn" class="primary-btn">ANALISIS GIGI</button>
@@ -58,33 +46,17 @@
 
       <section class="manual-only">
         <p class="eyebrow">SHIFT ADVICE</p>
-        <div id="advice" class="advice">
-          <strong>TAHAN</strong>
-          <span>Masukkan kondisi mesin untuk mendapat saran.</span>
-        </div>
+        <div id="advice" class="advice"><strong>TAHAN</strong><span>Masukkan kondisi mesin untuk mendapat saran.</span></div>
       </section>
     </aside>
 
     <section class="stage">
       <div class="telemetry">
-        <div>
-          <small>GEAR</small>
-          <strong id="gearValue">3</strong>
-        </div>
-        <div>
-          <small>RPM</small>
-          <strong id="rpmValue">4200</strong>
-        </div>
-        <div>
-          <small>SPEED</small>
-          <strong id="speedValue">120</strong>
-          <small>KM/J</small>
-        </div>
+        <div><small>GEAR</small><strong id="gearValue">3</strong></div>
+        <div><small>RPM</small><strong id="rpmValue">4200</strong></div>
+        <div><small>SPEED</small><strong id="speedValue">120</strong><small>KM/J</small></div>
       </div>
-
-      <div class="rpm-bar">
-        <span id="rpmFill"></span>
-      </div>
+      <div class="rpm-bar"><span id="rpmFill"></span></div>
 
       <div id="track" class="track">
         <div class="speed-lines"></div>
@@ -92,12 +64,29 @@
         <div id="heat" class="heat"></div>
 
         <div id="vehicleSprite" class="vehicle-sprite mobil">
-          <div class="car">
-            <div class="cabin"></div>
-            <div class="spoiler"></div>
-            <div class="wheel wheel-left"></div>
-            <div class="wheel wheel-right"></div>
-            <div class="headlight"></div>
+          <div class="illustrated-truck">
+            <div class="truck-bed"><i></i><i></i><i></i></div>
+            <div class="truck-cabin"><div class="truck-window"></div></div>
+            <div class="truck-hood"></div>
+            <div class="truck-grille"></div>
+            <div class="truck-headlight"></div>
+            <div class="truck-bumper"></div>
+            <div class="truck-roof-rack"><i></i><i></i></div>
+            <div class="truck-wheel rear-wheel"><span></span></div>
+            <div class="truck-wheel front-wheel"><span></span></div>
+          </div>
+
+          <div class="illustrated-motor">
+            <div class="bike-fairing"></div>
+            <div class="bike-tank"></div>
+            <div class="bike-seat"></div>
+            <div class="bike-nose"></div>
+            <div class="bike-windscreen"></div>
+            <div class="bike-exhaust"></div>
+            <div class="bike-fork front-fork"></div>
+            <div class="bike-fork back-fork"></div>
+            <div class="bike-wheel rear-bike-wheel"><span></span></div>
+            <div class="bike-wheel front-bike-wheel"><span></span></div>
           </div>
         </div>
 
@@ -114,29 +103,10 @@
 
     <aside class="panel telemetry-panel">
       <p class="eyebrow">LIVE TELEMETRY</p>
-      <div class="dial">
-        <div class="dial-ring">
-          <strong id="dialRpm">4200</strong>
-          <small>RPM ×1000</small>
-        </div>
-      </div>
-
-      <div class="meter">
-        <div class="meter-head"><span>RPM ZONE</span><strong id="rpmZone">NORMAL</strong></div>
-        <div class="zone-bar"><span id="zoneFill"></span></div>
-      </div>
-
-      <div class="stat-grid">
-        <div><small>GAS</small><strong id="gasStat">50%</strong></div>
-        <div><small>SHIFT</small><strong id="shiftStat">—</strong></div>
-      </div>
-
-      <div class="log">
-        <p class="eyebrow">SYSTEM LOG</p>
-        <div id="logList">
-          <span>Simulator siap.</span>
-        </div>
-      </div>
+      <div class="dial"><div class="dial-ring"><strong id="dialRpm">4200</strong><small>RPM ×1000</small></div></div>
+      <div class="meter"><div class="meter-head"><span>RPM ZONE</span><strong id="rpmZone">NORMAL</strong></div><div class="zone-bar"><span id="zoneFill"></span></div></div>
+      <div class="stat-grid"><div><small>GAS</small><strong id="gasStat">50%</strong></div><div><small>SHIFT</small><strong id="shiftStat">—</strong></div></div>
+      <div class="log"><p class="eyebrow">SYSTEM LOG</p><div id="logList"><span>Simulator siap.</span></div></div>
     </aside>
   </main>
 
