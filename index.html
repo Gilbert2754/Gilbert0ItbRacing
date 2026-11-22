@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShiftLogic Racing Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="race-bg"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">ITB</span>
+      <div>
+        <strong>SHIFTLOGIC</strong>
+        <small>RACING TRANSMISSION LAB</small>
+      </div>
+    </div>
+    <nav class="tabs">
+      <button class="tab active" data-mode="manual">MANUAL</button>
+      <button class="tab" data-mode="automatic">AUTOMATIC</button>
+    </nav>
+  </header>
+
+  <main class="app">
+    <aside class="panel controls">
+      <section>
+        <p class="eyebrow">VEHICLE</p>
+        <div class="vehicle-switch">
+          <button class="vehicle active" data-vehicle="mobil">🏎 <span>MOBIL</span></button>
+          <button class="vehicle" data-vehicle="motor">🏍 <span>MOTOR</span></button>
+        </div>
+      </section>
+
+      <section>
+        <p class="eyebrow">DRIVER INPUT</p>
+        <label>
+          Kecepatan
+          <span><output id="speedOutput">120</output> km/j</span>
+        </label>
+        <input id="speedInput" type="range" min="0" max="260" value="120" />
+
+        <label>
+          RPM
+          <span><output id="rpmOutput">4200</output></span>
+        </label>
+        <input id="rpmInput" type="range" min="800" max="11000" value="4200" />
+
+        <label>
+          Gas
+          <span><output id="throttleOutput">50</output>%</span>
+        </label>
+        <input id="throttleInput" type="range" min="0" max="100" value="50" />
+
+        <button id="analyzeBtn" class="primary-btn">ANALISIS GIGI</button>
+      </section>
+
+      <section class="manual-only">
+        <p class="eyebrow">SHIFT ADVICE</p>
+        <div id="advice" class="advice">
+          <strong>TAHAN</strong>
+          <span>Masukkan kondisi mesin untuk mendapat saran.</span>
+        </div>
+      </section>
+    </aside>
+
+    <section class="stage">
+      <div class="telemetry">
+        <div>
+          <small>GEAR</small>
+          <strong id="gearValue">3</strong>
+        </div>
+        <div>
+          <small>RPM</small>
+          <strong id="rpmValue">4200</strong>
+        </div>
+        <div>
+          <small>SPEED</small>
+          <strong id="speedValue">120</strong>
+          <small>KM/J</small>
+        </div>
+      </div>
+
+      <div class="rpm-bar">
+        <span id="rpmFill"></span>
+      </div>
+
+      <div id="track" class="track">
+        <div class="speed-lines"></div>
+        <div id="smoke" class="smoke"></div>
+        <div id="heat" class="heat"></div>
+
+        <div id="vehicleSprite" class="vehicle-sprite mobil">
+          <div class="car">
+            <div class="cabin"></div>
+            <div class="spoiler"></div>
+            <div class="wheel wheel-left"></div>
+            <div class="wheel wheel-right"></div>
+            <div class="headlight"></div>
+          </div>
+        </div>
+
+        <div class="road-line line-one"></div>
+        <div class="road-line line-two"></div>
+        <div class="road-line line-three"></div>
+      </div>
+
+      <div class="status-strip">
+        <div><span class="status-dot"></span><strong id="engineStatus">ENGINE NORMAL</strong></div>
+        <button id="launchBtn">🏁 MULAI SIMULASI</button>
+      </div>
+    </section>
+
+    <aside class="panel telemetry-panel">
+      <p class="eyebrow">LIVE TELEMETRY</p>
+      <div class="dial">
+        <div class="dial-ring">
+          <strong id="dialRpm">4200</strong>
+          <small>RPM ×1000</small>
+        </div>
+      </div>
+
+      <div class="meter">
+        <div class="meter-head"><span>RPM ZONE</span><strong id="rpmZone">NORMAL</strong></div>
+        <div class="zone-bar"><span id="zoneFill"></span></div>
+      </div>
+
+      <div class="stat-grid">
+        <div><small>GAS</small><strong id="gasStat">50%</strong></div>
+        <div><small>SHIFT</small><strong id="shiftStat">—</strong></div>
+      </div>
+
+      <div class="log">
+        <p class="eyebrow">SYSTEM LOG</p>
+        <div id="logList">
+          <span>Simulator siap.</span>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
