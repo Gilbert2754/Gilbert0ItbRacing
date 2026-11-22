@@ -3,113 +3,146 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07131b" />
   <title>ShiftLogic Racing Simulator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="race-bg"></div>
+  <div class="race-bg" aria-hidden="true"></div>
 
   <header class="topbar">
-    <div class="brand">
+    <a class="brand" href="#" aria-label="ShiftLogic Racing Simulator">
       <span class="brand-mark">ITB</span>
-      <div><strong>SHIFTLOGIC</strong><small>RACING TRANSMISSION LAB</small></div>
-    </div>
-    <nav class="tabs">
-      <button class="tab active" data-mode="manual">MANUAL</button>
-      <button class="tab" data-mode="automatic">AUTOMATIC</button>
+      <span><strong>SHIFTLOGIC</strong><small>RACING TRANSMISSION LAB</small></span>
+    </a>
+    <nav class="tabs" aria-label="Mode simulasi">
+      <button class="tab active" data-mode="manual" type="button">MANUAL</button>
+      <button class="tab" data-mode="automatic" type="button">AUTOMATIC</button>
     </nav>
   </header>
 
   <main class="app">
     <aside class="panel controls">
       <section>
-        <p class="eyebrow">VEHICLE</p>
+        <p class="eyebrow">PILIH KENDARAAN</p>
         <div class="vehicle-switch">
-          <button class="vehicle active" data-vehicle="mobil">🏎 <span>MOBIL</span></button>
-          <button class="vehicle" data-vehicle="motor">🏍 <span>MOTOR</span></button>
+          <button class="vehicle active" data-vehicle="mobil" type="button" aria-pressed="true">🚙 <span>MOBIL PICKUP</span></button>
+          <button class="vehicle" data-vehicle="motor" type="button" aria-pressed="false">🏍️ <span>MOTOR SPORT</span></button>
         </div>
       </section>
 
       <section>
-        <p class="eyebrow">DRIVER INPUT</p>
-        <label>Kecepatan <span><output id="speedOutput">120</output> km/j</span></label>
+        <p class="eyebrow">INPUT PENGEMUDI</p>
+        <label for="speedInput">Kecepatan <span><output id="speedOutput">120</output> km/j</span></label>
         <input id="speedInput" type="range" min="0" max="260" value="120" />
-
-        <label>RPM <span><output id="rpmOutput">4200</output></span></label>
-        <input id="rpmInput" type="range" min="800" max="11000" value="4200" />
-
-        <label>Gas <span><output id="throttleOutput">50</output>%</span></label>
+        <label for="rpmInput">Putaran mesin <span><output id="rpmOutput">4200</output> RPM</span></label>
+        <input id="rpmInput" type="range" min="800" max="7000" value="4200" />
+        <label for="throttleInput">Gas <span><output id="throttleOutput">50</output>%</span></label>
         <input id="throttleInput" type="range" min="0" max="100" value="50" />
-
-        <button id="analyzeBtn" class="primary-btn">ANALISIS GIGI</button>
+        <button id="analyzeBtn" class="primary-btn" type="button">ANALISIS GIGI</button>
       </section>
 
       <section class="manual-only">
-        <p class="eyebrow">SHIFT ADVICE</p>
-        <div id="advice" class="advice"><strong>TAHAN</strong><span>Masukkan kondisi mesin untuk mendapat saran.</span></div>
+        <p class="eyebrow">SARAN PERPINDAHAN</p>
+        <div id="advice" class="advice"><strong>TAHAN</strong><span>Atur kecepatan dan RPM, lalu tekan Analisis Gigi.</span></div>
       </section>
     </aside>
 
-    <section class="stage">
+    <section class="stage" aria-label="Visualisasi kendaraan dan data simulasi">
       <div class="telemetry">
-        <div><small>GEAR</small><strong id="gearValue">3</strong></div>
-        <div><small>RPM</small><strong id="rpmValue">4200</strong></div>
-        <div><small>SPEED</small><strong id="speedValue">120</strong><small>KM/J</small></div>
+        <div><small>GIGI</small><strong id="gearValue">3</strong></div>
+        <div><small>RPM</small><strong id="rpmValue">4.200</strong></div>
+        <div><small>KECEPATAN</small><strong id="speedValue">120</strong><small>KM/J</small></div>
       </div>
-      <div class="rpm-bar"><span id="rpmFill"></span></div>
+      <div class="rpm-bar" aria-label="Tingkat RPM"><span id="rpmFill"></span></div>
 
       <div id="track" class="track">
-        <div class="speed-lines"></div>
-        <div id="smoke" class="smoke"></div>
-        <div id="heat" class="heat"></div>
-
+        <div class="track-grid" aria-hidden="true"></div>
+        <div id="heat" class="heat" aria-hidden="true"></div>
+        <div id="smoke" class="smoke" aria-hidden="true"><i></i><i></i><i></i></div>
         <div id="vehicleSprite" class="vehicle-sprite mobil">
-          <div class="illustrated-truck">
-            <div class="truck-bed"><i></i><i></i><i></i></div>
-            <div class="truck-cabin"><div class="truck-window"></div></div>
-            <div class="truck-hood"></div>
-            <div class="truck-grille"></div>
-            <div class="truck-headlight"></div>
-            <div class="truck-bumper"></div>
-            <div class="truck-roof-rack"><i></i><i></i></div>
-            <div class="truck-wheel rear-wheel"><span></span></div>
-            <div class="truck-wheel front-wheel"><span></span></div>
-          </div>
+          <svg class="vehicle-art pickup-art" viewBox="0 0 640 300" role="img" aria-label="Ilustrasi dua dimensi mobil pickup merah">
+            <defs>
+              <linearGradient id="truckRed" x2="0" y2="1"><stop stop-color="#ff6660"/><stop offset=".48" stop-color="#e52c32"/><stop offset="1" stop-color="#9e111b"/></linearGradient>
+              <linearGradient id="glass" x2="0" y2="1"><stop stop-color="#d9f6ff"/><stop offset="1" stop-color="#6595a4"/></linearGradient>
+              <linearGradient id="metal" x2="0" y2="1"><stop stop-color="#d9e3e5"/><stop offset="1" stop-color="#657176"/></linearGradient>
+            </defs>
+            <!-- pickup bed and side panels -->
+            <path d="M335 99h220q19 0 19 18v86H335z" fill="#92151e" stroke="#5d1018" stroke-width="8"/>
+            <path d="M348 105h210v78H348z" fill="url(#truckRed)" stroke="#ff7770" stroke-width="4"/>
+            <path d="M358 119h190M358 141h190M358 163h190" stroke="#a51b24" stroke-width="5" opacity=".8"/>
+            <path d="M337 101v82M562 105v79" stroke="#ff8a7b" stroke-width="7"/>
+            <!-- cabin and windshield -->
+            <path d="M188 119l40-72q7-13 25-13h103q19 0 29 16l42 72-13 95H175z" fill="url(#truckRed)" stroke="#79131b" stroke-width="8"/>
+            <path d="M239 54q5-10 18-10h85q13 0 20 12l29 50H211z" fill="url(#glass)" stroke="#58131b" stroke-width="8"/>
+            <path d="M299 48v59" stroke="#79131b" stroke-width="8"/>
+            <path d="M184 126h240v83H183z" fill="url(#truckRed)"/>
+            <path d="M301 113v92" stroke="#8a1820" stroke-width="5"/>
+            <path d="M316 158h35" stroke="#f8b4a7" stroke-width="5" stroke-linecap="round"/>
+            <!-- hood, front grille and bumper -->
+            <path d="M72 157q0-20 24-25l94-9 5 88H75z" fill="url(#truckRed)" stroke="#78131a" stroke-width="8"/>
+            <path d="M79 158h41v25H78z" fill="#fff1b1" stroke="#941b20" stroke-width="5"/>
+            <path d="M46 177h44v39H46z" fill="url(#metal)" stroke="#4f5c60" stroke-width="6"/>
+            <path d="M51 183h34M51 192h34M51 201h34" stroke="#536064" stroke-width="4"/>
+            <path d="M38 221h67" stroke="url(#metal)" stroke-width="13" stroke-linecap="round"/>
+            <!-- roof rack -->
+            <path d="M209 33v-17h149v18M224 16v-10M341 16v-10" fill="none" stroke="#d6dfe0" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- wheels -->
+            <g class="wheel-spin"><circle cx="174" cy="226" r="48" fill="#101417" stroke="#050708" stroke-width="10"/><circle cx="174" cy="226" r="27" fill="url(#metal)" stroke="#303a3e" stroke-width="7"/><circle cx="174" cy="226" r="8" fill="#414b4e"/></g>
+            <g class="wheel-spin"><circle cx="478" cy="226" r="48" fill="#101417" stroke="#050708" stroke-width="10"/><circle cx="478" cy="226" r="27" fill="url(#metal)" stroke="#303a3e" stroke-width="7"/><circle cx="478" cy="226" r="8" fill="#414b4e"/></g>
+            <path d="M102 222h22m286 0h19" stroke="#76141b" stroke-width="10"/>
+            <ellipse cx="322" cy="274" rx="260" ry="13" fill="#000" opacity=".25"/>
+          </svg>
 
-          <div class="illustrated-motor">
-            <div class="bike-fairing"></div>
-            <div class="bike-tank"></div>
-            <div class="bike-seat"></div>
-            <div class="bike-nose"></div>
-            <div class="bike-windscreen"></div>
-            <div class="bike-exhaust"></div>
-            <div class="bike-fork front-fork"></div>
-            <div class="bike-fork back-fork"></div>
-            <div class="bike-wheel rear-bike-wheel"><span></span></div>
-            <div class="bike-wheel front-bike-wheel"><span></span></div>
-          </div>
+          <svg class="vehicle-art motorcycle-art" viewBox="0 0 640 300" role="img" aria-label="Ilustrasi dua dimensi motor sport merah">
+            <defs>
+              <linearGradient id="bikeRed" x2="0" y2="1"><stop stop-color="#ff454a"/><stop offset="1" stop-color="#b80d19"/></linearGradient>
+              <linearGradient id="bikeBlack" x2="0" y2="1"><stop stop-color="#41464a"/><stop offset="1" stop-color="#090c0e"/></linearGradient>
+              <linearGradient id="bikeMetal" x2="0" y2="1"><stop stop-color="#e8f0f1"/><stop offset="1" stop-color="#67767a"/></linearGradient>
+            </defs>
+            <!-- wheels -->
+            <g class="wheel-spin"><circle cx="147" cy="224" r="65" fill="#0c0e10" stroke="#050607" stroke-width="12"/><circle cx="147" cy="224" r="42" fill="none" stroke="url(#bikeMetal)" stroke-width="11"/><circle cx="147" cy="224" r="17" fill="#778287" stroke="#242b2e" stroke-width="7"/><path d="M147 183v82m-41-41h82m-70-29 58 58m0-58-58 58" stroke="#aab5b7" stroke-width="3"/></g>
+            <g class="wheel-spin"><circle cx="504" cy="224" r="65" fill="#0c0e10" stroke="#050607" stroke-width="12"/><circle cx="504" cy="224" r="42" fill="none" stroke="url(#bikeMetal)" stroke-width="11"/><circle cx="504" cy="224" r="17" fill="#778287" stroke="#242b2e" stroke-width="7"/><path d="M504 183v82m-41-41h82m-70-29 58 58m0-58-58 58" stroke="#aab5b7" stroke-width="3"/></g>
+            <!-- swingarm, frame and exhaust -->
+            <path d="M160 205l160-54 180 53-30 20-158-37-119 53z" fill="#252b2e" stroke="#0d1113" stroke-width="10" stroke-linejoin="round"/>
+            <path d="M183 180l173-47 107 34" fill="none" stroke="#9ca8aa" stroke-width="13" stroke-linecap="round"/>
+            <path d="M195 192l105 40 95-22-70-48z" fill="url(#bikeMetal)" stroke="#252b2e" stroke-width="9"/>
+            <path d="M222 237l173-9q18-1 24 11t-12 15l-169 8q-31 1-37-11t21-14z" fill="url(#bikeBlack)" stroke="#727c7e" stroke-width="6"/>
+            <!-- body fairing -->
+            <path d="M205 143l69-55 82-15 93 29 52 47-27 49-91 14-99-17-69-1z" fill="url(#bikeBlack)" stroke="#111518" stroke-width="8" stroke-linejoin="round"/>
+            <path d="M254 111l66-42 76 8 69 36-66 16-75-16z" fill="url(#bikeRed)" stroke="#8e111b" stroke-width="6"/>
+            <path d="M283 138l123-19 73 32-35 47-92 12-84-30z" fill="url(#bikeRed)" stroke="#8d1119" stroke-width="6"/>
+            <path d="M332 124l123 21-45 38-79-11z" fill="#15191c"/>
+            <!-- seat and tail -->
+            <path d="M129 101l106 15 71 30-45 11-68-22-69-5-42-21z" fill="url(#bikeBlack)" stroke="#101416" stroke-width="7"/>
+            <path d="M101 104l56 6 68 19-82-9-56-10z" fill="url(#bikeRed)"/>
+            <!-- front nose, windscreen, fork and headlight -->
+            <path d="M438 94l44-35 54 19 45 64-35 25-61-14-35-32z" fill="url(#bikeRed)" stroke="#81121a" stroke-width="7"/>
+            <path d="M473 77l39-43 45 22 17 42-46-17z" fill="#202a31" stroke="#11171a" stroke-width="6"/>
+            <path d="M511 119l40 38 20 68m-73-76 6 74" fill="none" stroke="url(#bikeMetal)" stroke-width="12" stroke-linecap="round"/>
+            <path d="M494 137l47 10" stroke="#f2f5e8" stroke-width="10" stroke-linecap="round"/>
+            <path d="M209 158l-47 51" stroke="#7d898c" stroke-width="11" stroke-linecap="round"/>
+            <path d="M185 135l61-26" stroke="#252b2e" stroke-width="10" stroke-linecap="round"/>
+            <ellipse cx="324" cy="278" rx="250" ry="12" fill="#000" opacity=".24"/>
+          </svg>
         </div>
-
-        <div class="road-line line-one"></div>
-        <div class="road-line line-two"></div>
-        <div class="road-line line-three"></div>
+        <div class="road-line line-one"></div><div class="road-line line-two"></div><div class="road-line line-three"></div>
       </div>
 
       <div class="status-strip">
-        <div><span class="status-dot"></span><strong id="engineStatus">ENGINE NORMAL</strong></div>
-        <button id="launchBtn">🏁 MULAI SIMULASI</button>
+        <div><span class="status-dot"></span><strong id="engineStatus">MESIN NORMAL</strong></div>
+        <button id="launchBtn" type="button">🏁 MULAI SIMULASI</button>
       </div>
     </section>
 
     <aside class="panel telemetry-panel">
-      <p class="eyebrow">LIVE TELEMETRY</p>
-      <div class="dial"><div class="dial-ring"><strong id="dialRpm">4200</strong><small>RPM ×1000</small></div></div>
-      <div class="meter"><div class="meter-head"><span>RPM ZONE</span><strong id="rpmZone">NORMAL</strong></div><div class="zone-bar"><span id="zoneFill"></span></div></div>
-      <div class="stat-grid"><div><small>GAS</small><strong id="gasStat">50%</strong></div><div><small>SHIFT</small><strong id="shiftStat">—</strong></div></div>
-      <div class="log"><p class="eyebrow">SYSTEM LOG</p><div id="logList"><span>Simulator siap.</span></div></div>
+      <p class="eyebrow">TELEMETRI LANGSUNG</p>
+      <div class="dial"><div class="dial-ring"><strong id="dialRpm">4.200</strong><small>PUTARAN / MENIT</small></div></div>
+      <div class="meter"><div class="meter-head"><span>ZONA RPM</span><strong id="rpmZone">NORMAL</strong></div><div class="zone-bar"><span id="zoneFill"></span></div></div>
+      <div class="stat-grid"><div><small>GAS</small><strong id="gasStat">50%</strong></div><div><small>PERPINDAHAN</small><strong id="shiftStat">—</strong></div></div>
+      <div class="log"><p class="eyebrow">CATATAN SISTEM</p><div id="logList"><span>Simulator siap.</span></div></div>
     </aside>
   </main>
-
   <script src="script.js"></script>
 </body>
 </html>
